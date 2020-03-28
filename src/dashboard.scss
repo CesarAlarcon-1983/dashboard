@@ -1,0 +1,51 @@
+@import './utils/variables';
+
+.dashboard {
+    background: $lightestGray;
+    width: 100%;
+    padding: 60px 40px 40px 40px;
+
+    &__heading-container {
+        width: 100%;
+    }
+
+    &__main {
+        display: flex;
+    }
+
+    &__panels-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 1px;
+    }
+
+    &__sidebar-container {
+        width: auto;
+        width: 20%;
+        margin-right: 20px;
+    }
+
+    &__panels-container {
+        width: calc(80% - 20px);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    &__panels-top {
+        // width: 100%;
+    }
+
+
+    &__panels-bottom {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__panel {
+        width: calc(33.33% - 13.34px);
+    }
+}

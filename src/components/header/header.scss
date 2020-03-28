@@ -1,0 +1,124 @@
+@import '../../utils/variables';
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 10px 20px;
+    height: 60px;
+    background: $white;
+    width: 100%;
+
+    &__container {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__logo {
+        width: 30%;
+    }
+
+    &__nav {
+        width: 70%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
+    }
+
+    &__search {
+        width: 50%;
+        height: 100%;
+        border: 1px solid $lightGray;
+        border-radius: 3px;
+        color: $lightGray;
+        font-size: 14px;
+        padding-left: 10px;
+        outline: none;
+
+        &::placeholder {
+            color: $lightGray;
+        }
+
+    }
+
+    &__help-icon {
+        margin-left: 20px;
+        cursor: pointer;
+        color: $lightGray;
+    }
+
+    &__user-menu {
+        margin-left: 20px;
+        cursor: pointer;
+        position: relative;
+        height: 60px;
+        display: flex;
+        align-items: center;
+
+    }
+
+    &__avatar {
+        color: $lightGray;
+    }
+
+    &__user-name {
+        color: $blue;
+        margin-left: 10px;
+        padding-right: 20px;
+        position: relative;
+        user-select: none;
+
+        &:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            height: 5px;
+            width: 5px;
+            border-bottom: 1px solid $blue;
+            border-right: 1px solid $blue;
+        }
+    }
+
+    &__user-submenu {
+        position: absolute;
+        top: 60px;
+        background: $midGray;
+        right: 0;
+        animation: menuIn 0.5s $easing forwards;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    &__list {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        padding: 20px;
+    }
+
+    &__item {
+        color: $white;
+        cursor: pointer;
+        
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@keyframes menuIn {
+    0%{opacity: 0; max-height: 0; width: 100%;}
+    100%{opacity: 1; max-height: 300px; width: 100%;}
+}
+
+@keyframes menuOut {
+    0%{opacity: 1; max-height: 300px; width: 100%;}
+    100%{opacity: 0; max-height: 0; width: 100%;}
+}

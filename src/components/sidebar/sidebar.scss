@@ -1,0 +1,73 @@
+@import '../../utils/variables';
+
+.sidebar {
+
+    &__list {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid $midGray;
+    }
+
+    &__item {
+        color: $red;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%,-50%, 0);
+            border: 1px solid $blue;
+            width: 130%;
+            height: 100%;
+            border-radius: 10px;
+            opacity: 0;
+        }
+
+        &.-active {
+            &:after {
+                opacity: 1;
+            }
+        }
+
+        &--subicon {
+            margin-left: 40px;
+        }
+    }
+
+    &__item-text {
+        margin: 0;
+        color: $midGray;
+    }
+
+    &__icon {
+        width: 30px;
+        color: $midGray;
+        margin-right: 10px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+
+    &__subicon {
+        margin-right: 10px;
+    }
+
+
+    &__button {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        color: $blue;
+        height: 50px;
+        line-height: 50px;
+        border: none;
+        background: $lightestGray;
+        border-radius: 10px;
+        padding: 0 20px;
+    }
+}
