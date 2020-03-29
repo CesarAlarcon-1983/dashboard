@@ -4,6 +4,7 @@ import Heading from './components/heading/heading';
 import Sidebar from './components/sidebar/sidebar';
 import EventHeaderPanel from './components/event-header/event-header';
 import RegistrationsPanel from './components/registrations-panel/registrations-panel';
+import MeetingsPanel from './components/meetings-panel/meetings-panel';
 import './dashboard.scss';
 
 class Dashboard extends React.Component {
@@ -20,16 +21,47 @@ class Dashboard extends React.Component {
         title: '1st Annual Business Marthmaker Houston',
         location: 'Houston, TX',
         date:  '02/14/20',
-        participants: {
-          buyers: 120,
-          suppliers: 55,
-          multilatterals: 13,
-          others: 150,
-        },
+        participants: [
+          {
+            type: "buyers",
+            quantity: 120,
+            isRegistrationOpen: false,
+            isScheduleOpen: false
+          },
+          {
+            type: "suppliers",
+            quantity: 55,
+            isRegistrationOpen: false,
+            isScheduleOpen: false
+          },
+          {
+            type: "multilatterals",
+            quantity: 13,
+            isRegistrationOpen: false,
+            isScheduleOpen: false
+          },
+          {
+            type: "others",
+            quantity: 150,
+            isRegistrationOpen: false,
+            isScheduleOpen: false
+          },
+        ],
         day: '5/04/2020',
-
       }
     };
+
+    this.toggleRegistration = this.toggleRegistration.bind(this);
+  }
+
+  toggleRegistration(participantType) {
+    const { participants } = this.state.EventResponse;
+    const selectedGroupIndex = participants.findIndex(participant => participant.type === participantType);
+    const newState = Object.assign({}, this.state);
+    
+    newState.EventResponse.participants[selectedGroupIndex].isRegistrationOpen = !participants[selectedGroupIndex].isRegistrationOpen;
+
+    this.setState(newState);
   }
 
   render() {
@@ -49,13 +81,14 @@ class Dashboard extends React.Component {
             </div>           
             <div className="dashboard__panels-container">
               <div className={"dashboard__panels-top"}>
-                <EventHeaderPanel data = {this.state.EventResponse}/>
+                <EventHeaderPanel data={this.state.EventResponse}/>
               </div>
               <div className={"dashboard__panels-bottom"}>
                 <div className={"dashboard__panel"}>
-                  <RegistrationsPanel data = {this.state.EventResponse}/>
+                  <RegistrationsPanel data={this.state.EventResponse} onToggleRegistration={this.toggleRegistration}/>
                 </div>
                 <div className={"dashboard__panel"}>
+                  <MeetingsPanel data={this.state.EventResponse}/>
                 </div>
                 <div className={"dashboard__panel"}>
                 </div>

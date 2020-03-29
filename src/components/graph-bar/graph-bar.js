@@ -1,17 +1,15 @@
 import React from 'react';
 import './graph-bar.scss';
 
-function generateBars(data) {
-  const dataKeys = Object.keys(data);
-  const dataValues = Object.values(data);
-  const totalParticipants = dataValues.reduce((a, b) => a + b);
+function generateBars(props) {
+  const { participants } = props;
   
-  console.log(dataKeys);
   const bars = [];
-  for(let i = 0; i < dataKeys.length; i++) {
-    const barWidth = (dataValues[i]/totalParticipants) * 100;
+
+  for(let i = 0; i < participants.groups.length; i++) {
+    const barWidth = (participants.groups[i].quantity/participants.total) * 100;
     
-    bars.push(<div className={`graph-bar__bar graph-bar__bar--${dataKeys[i]}`} style={{'width': barWidth + '%'}}></div>);
+    bars.push(<div className={`graph-bar__bar graph-bar__bar--${participants.groups[i].type}`} style={{'width': barWidth + '%'}}></div>);
   }
 
   return bars;
@@ -21,7 +19,7 @@ function generateBars(data) {
 const GraphBar = props => {
   return(
     <div className="graph-bar">
-      {generateBars(props.participants)}
+      {generateBars(props)}
 
     </div>
   );

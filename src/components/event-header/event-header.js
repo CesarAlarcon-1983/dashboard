@@ -41,8 +41,13 @@ class EventHeader extends React.Component {
     }
 
     calculateTotalParticipants(data) {
-        const dataValues = Object.values(data);
-        const totalParticipants = dataValues.reduce((a, b) => a + b);
+        const participantsQuantityArray = []
+
+        for(let i = 0; i < data.length; i++) {
+            participantsQuantityArray.push(data[i].quantity);
+        }
+
+        const totalParticipants = participantsQuantityArray.reduce((a, b) => a + b);
     
         return totalParticipants;
     }

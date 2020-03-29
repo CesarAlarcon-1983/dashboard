@@ -1,6 +1,7 @@
 import React from 'react';
 import Board from '../board/board';
 import GraphBar from '../graph-bar/graph-bar';
+import ToggleItems from '../toggle-items/toggle-items';
 import './registrations-panel.scss';
 
 class RegistrationsPanel extends React.Component {
@@ -14,16 +15,19 @@ class RegistrationsPanel extends React.Component {
   componentDidMount() {
   }
 
-  calculateTotalParticipants(data) {
-    const dataValues = Object.values(data);
-    const totalParticipants = dataValues.reduce((a, b) => a + b);
-
-    return totalParticipants;
+  calculateTotalParticipants(participants) {
+    const participantsQuantity = participants.map(participant => participant.quantity);
+  
+    return participantsQuantity.reduce((a, b) => a + b);
   }
-
+    
   render() {
-    const { participants } = this.props.data;
-    const totalParticipants = this.calculateTotalParticipants(participants)
+    const { data, onToggleRegistration } = this.props;
+    const totalParticipants = this.calculateTotalParticipants(data.participants)
+    const participants = {
+      groups: data.participants,
+      total: totalParticipants
+    };
     return(
       <Board>
         <div className={"registration-panel"}>
@@ -37,7 +41,14 @@ class RegistrationsPanel extends React.Component {
                 <GraphBar participants={participants} />
               </div>
             </div>
-            <div className={"registrations-panel__participants-details"}></div>
+            <div className={"registrations-panel__participants-details"}>
+              <ToggleItems 
+                participants={participants}
+                heading={"Reg. Open"}
+                type={"registration"}
+                onToggle={onToggleRegistration}
+              />
+            </div>
           </div>
         </div>
       </Board>

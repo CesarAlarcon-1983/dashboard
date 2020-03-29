@@ -1,0 +1,68 @@
+@import '../../utils/variables';
+
+.switch-button {
+    width: 40px;
+    height: 20px;
+    position: relative;
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 50px;
+    outline: none;
+    z-index: 1000;
+
+    &__status-icon {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        color: $white;
+        
+        svg {
+            height: 10px;
+        }
+        
+        &--on {
+            left: 0; 
+        }
+
+        &--off {
+            right: 0; 
+        }
+    }
+
+    &__input {
+        position: absolute;
+        left: -9999px;
+
+        &:checked + label {
+            background: $blue;
+
+            &:after {
+                transform: translateY(-50%) translateX(114%);
+            }
+    
+        }
+
+    }
+
+    &__label {
+        position: absolute;
+        background: $midGray;
+        width: 100%;
+        height: 100%;
+        border-radius: 50px;
+        transition: all .2s linear;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) translateX(10%);
+            height: 18px;
+            width: 18px;
+            background: $white;
+            border-radius: 50%;
+            transition: all .2s linear;
+        }
+    }
+}
