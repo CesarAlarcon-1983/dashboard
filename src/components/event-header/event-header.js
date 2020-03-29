@@ -9,32 +9,60 @@ class EventHeader extends React.Component {
         super(props)
 
         this.state = {
-            targetted: 'heartbeat',
-            eventData: this.props.EventData,
         }
     }
 
     componentDidMount() {
-        // this.setState({eventData: })
     }
 
-    // daysBarUpdater() {
-    //     const today = new Date;
-    //     const daysRamaining = today.getDate();
-    //     console.log(daysRamaining);
-    // }
+    formatDate(date) {
+        const monthNames = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+        ];
 
+        const eventDate = new Date(date);
+        const eventMonth = eventDate.getMonth();
+        const eventDay = eventDate.getDate();
+        const eventYear = eventDate.getFullYear();
+        const formattedDate = `${monthNames[eventMonth + 1]} ${eventDay} '${eventYear.toString().substr(-2, 2)}`;
+
+        return (formattedDate)
+    }
+
+    calculateTotalParticipants(data) {
+        const dataValues = Object.values(data);
+        const totalParticipants = dataValues.reduce((a, b) => a + b);
+    
+        return totalParticipants;
+    }
+        
     render() {
+        const { logo, title, location, date, participants } = this.props.data;
+
+        const formattedDate = this.formatDate(date);
+        const totalParticipants = this.calculateTotalParticipants(participants)
+
         return(
             <Board>
                 <div className={"event-header"}>
                     <div className={"event-header__heading"}>
                         <div className={"event-header__logo"}>
-                            <img src={this.state.eventData.logo} alt={"logo"}></img>
+                            <img src={logo} alt={"logo"}></img>
                         </div>
                         <div className={"event-header__information"}>
-                            <h2 className={"event-header__title"}>{this.state.eventData.title}</h2>
-                            <div className={"event-header__location"}>{this.state.eventData.location}</div>
+                            <h2 className={"event-header__title"}>{title}</h2>
+                            <div className={"event-header__location"}>{`${location}, ${formattedDate}`}</div>
                         </div>
                     </div>
                     <div className={"event-header__participants"}>
@@ -43,7 +71,7 @@ class EventHeader extends React.Component {
                                 <AccountCircleIcon />
                             </div>
                             <div className={"event-header__participants-group"}>
-                                <div className={"event-header__participants-number"}>{this.state.eventData.participants}</div>
+                                <div className={"event-header__participants-number"}>{totalParticipants}</div>
                                 <span className={"event-header__participants-text"}>{"Total Participants"}</span>
                             </div>
                         </div>
@@ -51,7 +79,6 @@ class EventHeader extends React.Component {
                             <div className={"event-header__remaining-days__bar"}></div>
                             <div className={"event-header__remaining-days__title"}>{"Time Until Event"}</div>
                             <div className={"event-header__remaining-days__days"}>{"5d"}</div>
-
                         </div>
                     </div>
                 </div>

@@ -18,10 +18,16 @@ class Dashboard extends React.Component {
       EventResponse: {
         logo: 'https://picsum.photos/id/237/200/300',
         title: '1st Annual Business Marthmaker Houston',
-        location: 'Houston, TX, Feb 14 \'20',
-        participants: 245,
+        location: 'Houston, TX',
+        date:  '02/14/20',
+        participants: {
+          buyers: 120,
+          suppliers: 55,
+          multilatterals: 13,
+          others: 150,
+        },
         day: '5/04/2020',
-        registrationsApproved: 320,
+
       }
     };
   }
@@ -43,11 +49,11 @@ class Dashboard extends React.Component {
             </div>           
             <div className="dashboard__panels-container">
               <div className={"dashboard__panels-top"}>
-                <EventHeaderPanel EventData = {this.state.EventResponse}/>
+                <EventHeaderPanel data = {this.state.EventResponse}/>
               </div>
               <div className={"dashboard__panels-bottom"}>
                 <div className={"dashboard__panel"}>
-                  <RegistrationsPanel EventData = {this.state.EventResponse}/>
+                  <RegistrationsPanel data = {this.state.EventResponse}/>
                 </div>
                 <div className={"dashboard__panel"}>
                 </div>
