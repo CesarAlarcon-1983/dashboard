@@ -47,13 +47,13 @@ class Sidebar extends React.Component {
                         </li>
                         <li className={"sidebar__item sidebar__item--subicon"}>
                             <div className={"sidebar__subicon"}>
-                                <CircleIcon style={{ color: '#F5bd1f', 'font-size': '12px' }}/>
+                                <CircleIcon style={{ color: '#F5bd1f', fontSize: '12px' }}/>
                             </div>
                             <span className={"sidebar__item-text"}>To Approve</span>
                         </li>
                         <li className={"sidebar__item sidebar__item--subicon"}>
                             <div className={"sidebar__subicon"}>
-                                <CircleIcon style={{ color: '#008000', 'font-size': '12px' }}/>
+                                <CircleIcon style={{ color: '#008000', fontSize: '12px' }}/>
                             </div>
                             <span className={"sidebar__item-text"}>Approved</span>
                         </li>

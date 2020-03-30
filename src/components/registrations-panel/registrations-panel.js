@@ -31,15 +31,17 @@ class RegistrationsPanel extends React.Component {
     return(
       <Board>
         <div className={"registration-panel"}>
-          <div className={"registrations-panel__heading"}></div>
+          <div className={"registration-panel__heading-group"}>
+            <div className={"registrations-panel__heading"}>{"Registrations Approved"}</div>
+            <span className={"registrations-panel__status"}>Increase of <strong>+11.1%</strong> in last 7 days</span>
+          </div>
           <div className={"registrations-panel__content"}>
-            <div className={"registrations-panel__status"}>Increase of <span>+11.1%</span> in last 7 days</div>
             <div className={"registrations-panel__approved-participants"}>
               <div className={"registrations-panel__approved-participants-number"}>{totalParticipants}</div>
               <div className={"registrations-panel__approved-participants-text"}>{"Total Approved Participants"}</div>
-              <div className={"registrations-panel__approved-participants-graph-bar"}>
-                <GraphBar participants={participants} />
-              </div>
+            </div>
+            <div className={"registrations-panel__graph-bar"}>
+              <GraphBar participants={participants} />
             </div>
             <div className={"registrations-panel__participants-details"}>
               <ToggleItems 

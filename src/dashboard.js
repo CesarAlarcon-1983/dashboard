@@ -5,6 +5,7 @@ import Sidebar from './components/sidebar/sidebar';
 import EventHeaderPanel from './components/event-header/event-header';
 import RegistrationsPanel from './components/registrations-panel/registrations-panel';
 import MeetingsPanel from './components/meetings-panel/meetings-panel';
+import MeetingsUtilizationPanel from './components/meetings-utilization-panel/meetings-utilization-panel';
 import './dashboard.scss';
 
 class Dashboard extends React.Component {
@@ -17,7 +18,6 @@ class Dashboard extends React.Component {
       },
       
       EventResponse: {
-        logo: 'https://picsum.photos/id/237/200/300',
         title: '1st Annual Business Marthmaker Houston',
         location: 'Houston, TX',
         date:  '02/14/20',
@@ -52,6 +52,7 @@ class Dashboard extends React.Component {
     };
 
     this.toggleRegistration = this.toggleRegistration.bind(this);
+    this.toggleSchedule = this.toggleSchedule.bind(this);
   }
 
   toggleRegistration(participantType) {
@@ -60,6 +61,16 @@ class Dashboard extends React.Component {
     const newState = Object.assign({}, this.state);
     
     newState.EventResponse.participants[selectedGroupIndex].isRegistrationOpen = !participants[selectedGroupIndex].isRegistrationOpen;
+
+    this.setState(newState);
+  }
+
+  toggleSchedule(participantType) {
+    const { participants } = this.state.EventResponse;
+    const selectedGroupIndex = participants.findIndex(participant => participant.type === participantType);
+    const newState = Object.assign({}, this.state);
+    
+    newState.EventResponse.participants[selectedGroupIndex].isScheduleOpen = !participants[selectedGroupIndex].isScheduleOpen;
 
     this.setState(newState);
   }
@@ -88,9 +99,10 @@ class Dashboard extends React.Component {
                   <RegistrationsPanel data={this.state.EventResponse} onToggleRegistration={this.toggleRegistration}/>
                 </div>
                 <div className={"dashboard__panel"}>
-                  <MeetingsPanel data={this.state.EventResponse}/>
+                  <MeetingsPanel data={this.state.EventResponse} onToggleSchedule={this.toggleSchedule}/>
                 </div>
                 <div className={"dashboard__panel"}>
+                  <MeetingsUtilizationPanel />
                 </div>
               </div>
             </div>

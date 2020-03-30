@@ -2,6 +2,7 @@
 import React from 'react';
 import Board from '../board/board';
 import AccountCircleIcon from '@material-ui/icons/AccountCircleOutlined';
+import EventLogo from '../../assets/event-logo.png';
 import './event-header.scss';
 
 class EventHeader extends React.Component {
@@ -53,7 +54,7 @@ class EventHeader extends React.Component {
     }
         
     render() {
-        const { logo, title, location, date, participants } = this.props.data;
+        const { title, location, date, participants } = this.props.data;
 
         const formattedDate = this.formatDate(date);
         const totalParticipants = this.calculateTotalParticipants(participants)
@@ -63,7 +64,7 @@ class EventHeader extends React.Component {
                 <div className={"event-header"}>
                     <div className={"event-header__heading"}>
                         <div className={"event-header__logo"}>
-                            <img src={logo} alt={"logo"}></img>
+                            <img src={EventLogo} alt={"logo"}></img>
                         </div>
                         <div className={"event-header__information"}>
                             <h2 className={"event-header__title"}>{title}</h2>

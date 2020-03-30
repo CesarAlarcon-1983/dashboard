@@ -1,5 +1,58 @@
 @import '../../utils/variables';
 
 .registrations-panel {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
+    &__heading {
+        margin-bottom: 10px;
+        border-left: 2px solid $blue;
+        padding-left: 10px;
+        position: relative;
+
+        &:after {
+            content: '';
+            position: absolute;
+            height: 5px;
+            width: 5px;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            border-right: 2px solid $blue;
+            border-bottom: 2px solid $blue;
+        }
+    }
+    
+    &__status {
+        padding-left: 12px;
+        font-size: 14px;
+        color: $midGray;
+
+        strong {
+            color: $blue;
+        }
+    }
+
+    &__content {
+        padding-top: 20px;
+    }
+
+    &__approved-participants {
+        margin-bottom: 15px;
+    }
+
+    &__approved-participants-number {
+        font-size: 36px;
+    } 
+        
+    &__approved-participants-text {
+        color: $midGray;
+        font-size: 14px;
+    }
+
+    &__graph-bar {
+        margin-bottom: 10px;
+    }
 }

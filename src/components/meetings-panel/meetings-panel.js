@@ -14,52 +14,45 @@ class MeetingPanel extends React.Component {
   componentDidMount() {
   }
 
-  calculateTotalParticipants(data) {
-    const participantsQuantityArray = []
+  calculateTotalParticipants(participants) {
+    const participantsQuantity = participants.map(participant => participant.quantity);
   
-    for(let i = 0; i < data.length; i++) {
-        participantsQuantityArray.push(data[i].quantity);
-    }
-  
-    const totalParticipants = participantsQuantityArray.reduce((a, b) => a + b);
-  
-    return totalParticipants;
+    return participantsQuantity.reduce((a, b) => a + b);
   }
 
-  getParticipantsLabels(data) {
-    const keysArray = [];
-
-    
-    for(let i = 0; i < data.length; i++) {
-      const key = data[i].type;
-      keysArray.push(key)
-    }
-
-    return keysArray;
+  getParticipantsGroups(participants) {
+    return (participants.map(participant => ({type: participant.type})));
   }
 
   render() {
-    const { participants } = this.props.data;
-    const totalParticipants = this.calculateTotalParticipants(participants)
+    const { data, onToggleSchedule } = this.props;
+    const totalParticipants = this.calculateTotalParticipants(data.participants)
 
     return(
       <Board>
         <div className={"meetings-panel"}>
-          <div className={"meetings-panel__heading"}></div>
-          <div className={"meetings-panel__content"}>
+          <div className={"meetings-panel__heading-group"}>
+            <div className={"meetings-panel__heading"}>{"Meetings"}</div>
             <div className={"meetings-panel__status"}>Increase of <span>+11.1%</span> in last 7 days</div>
-            <div className={"meetings-panel__-participants"}>
-              <div className={"meetings-panel__participants-approved"}>
-                <div className={"meetings-panel__participants-approved-number"}>{totalParticipants}</div>
-                <div className={"meetings-panel__participants-approved-label"}>{"Confirmed"}</div>
+          </div>
+          <div className={"meetings-panel__content"}>
+            <div className={"meetings-panel__participants"}>
+              <div className={"meetings-panel__approved-participants"}>
+                <div className={"meetings-panel__approved-participants-number"}>{totalParticipants}</div>
+                <div className={"meetings-panel__approved-participants-label"}>{"Confirmed"}</div>
               </div>
-              <div className={"meetings-panel__participants-pending"}>
-                <div className={"meetings-panel__participants-pending-number"}>{"150"}</div>
-                <div className={"meetings-panel__participants-pending-label"}>{"Pending"}</div>
+              <div className={"meetings-panel__pending-participants"}>
+                <div className={"meetings-panel__pending-participants-number"}>{"150"}</div>
+                <div className={"meetings-panel__pending-participants-label"}>{"Pending"}</div>
               </div>
             </div>
             <div className={"meetings-panel__participants-details"}>
-              <ToggleItems participants={this.getParticipantsLabels(participants)} heading={"Ability to schedule"} type={"meetings"}/>
+              <ToggleItems
+                participants={this.getParticipantsGroups(data.participants)}
+                heading={"Ability to schedule"}
+                type={"meetings"}
+                onToggle={onToggleSchedule}
+              />
             </div>
           </div>
         </div>

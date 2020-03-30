@@ -1,7 +1,11 @@
 @import '../../utils/variables';
 
 .sidebar {
-
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
     &__list {
         margin-bottom: 20px;
         padding-bottom: 20px;

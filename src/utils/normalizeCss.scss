@@ -1,3 +1,5 @@
+@import './variables';
+
 * {
   box-sizing: border-box;
 }
@@ -7,6 +9,7 @@ html {
 }
 body {
   margin: 0;
+  font-family: $mainFont;
 }
 main {
   display: block;

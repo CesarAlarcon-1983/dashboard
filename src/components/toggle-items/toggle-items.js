@@ -7,19 +7,14 @@ function generateToggleItems(props) {
   const { participants, type, onToggle } = props;
   
   console.log(participants);
-  let formattedParticipants = "";
+  
+  const formattedParticipants = participants.groups ? participants.groups : participants;
 
-  if(participants.groups) {
-    formattedParticipants = participants.groups;
-  } else {
-    formattedParticipants = participants;
-  }
-
-  const toggleItemStructure = formattedParticipants.map(participant => {
+  const toggleItemStructure = formattedParticipants.map((participant, index) => {
     const participantsPercentage = Math.round((participant.quantity/participants.total)*100);
-
+    
     return(
-      <div className={"toggle-items__item"}>
+      <div className={"toggle-items__item"} key={index}>
         <div className={"toggle-items__item__detail"}>
           <div className={`toggle-items__item__bullet toggle-items__item__bullet--${participant.type}`}><CircleIcon /></div>
           <div className={"toggle-items__item__name"}>{participant.type}</div>

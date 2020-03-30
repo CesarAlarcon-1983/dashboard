@@ -1,0 +1,79 @@
+@import '../../utils/variables';
+
+.scale {
+    width: 100%;
+
+    &__heading {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    &__label {
+        color: $midGray;
+        font-size: 12px;
+        width: 60%;
+    }
+
+    &__change-wrapper {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__change {
+        font-size: 12px;
+        color: $midGray;
+    }
+
+    &__arrow {
+        height: 100%;
+        display: flex;
+        align-items: flex-start;
+
+        svg {
+            margin-top: 3px;
+            height: 10px;
+        }
+
+        &--positive {
+            color: $supplier;
+        }
+
+        &--negative {
+            color: $red;
+        }
+
+        &--neutral {
+            color: $multilatteral;
+        }
+    }
+
+    &__bar {
+        &__percentage {
+            margin-bottom: 5px;
+        }
+
+        &__wrapper {
+            position: relative;
+            height: 5px;
+        }
+
+        &__progress {
+            position: absolute;
+            left: 0;
+            height: 5px;
+            border-radius: 50px;
+            z-index: 2;
+        }
+
+        &__track {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            background: $lightestGray;
+            height: 5px;
+            border-radius: 50px;
+            z-index: 1;
+        }
+    }
+}
